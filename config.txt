@@ -1,0 +1,31 @@
+import cv2
+import numpy as np # no problem
+
+from sys import exit
+
+width, height = 500, 500
+image = np.ones((height, width)) * 127
+
+line_thickness = 20
+cv2.line(image, (0, 0), (80, 300), (0, 255, 0), thickness = line_thickness)
+cv2.line(image, (36, 300), (335+240, 320+28), (255, 255, 0), thickness = line_thickness)
+
+# image = cv2.imread("dft.png")
+
+# scale_percent = 360 # percent of original size
+# width = int(image.shape[1] * scale_percent / 100)
+# height = int(image.shape[0] * scale_percent / 100)
+# dim = (width, height)
+
+# image = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
+
+kernel = np.ones((6, 6), np.uint8)
+# Using cv2.erode() method
+image = cv2.erode(image, kernel, cv2.BORDER_REFLECT) 
+img = cv2.dilate(image, kernel, iterations=1)
+
+# image = 255-image
+
+#image = cv2.circle(image, (100, 100), 50, (255,255,255), 3)
+
+
